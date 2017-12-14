@@ -1,9 +1,10 @@
 
 .growler{
-	position:fixed;
+	// position:fixed;
 	display:block;
-	top:0;
-	left:0;
+	// top:0;
+	// left:0;
+	margin-top: 10px;
 	opacity:0;
 	visibility: hidden;
 	width:100%;
@@ -11,16 +12,23 @@
 	color:#fff;
 	font-size:17px;
 	background:#2ea91a;
-	height:55px;
-	margin-top:-55px;
-	line-height:55px;
+	// height:55px;
+	// margin-top:-55px;
+	// line-height:55px;
 	text-align:center;
 	transition:opacity 0.3s, margin-top 0.3s;
+
+	p {
+		line-height: 1.2em;
+		padding: 20px;
+		// margin: 0px;
+		color: white;
+	}
 }
 	.growler--success{
 		visibility:visible;
 		opacity:1;
-		margin-top:0px;
+		// margin-top:0px;
 		background-color:#5bbd66
 	}
 	.growler__icon{
@@ -34,13 +42,45 @@
 		margin-top:0px;
 		background:#ff5f5f;
 	}
-	
+
 	.growler--hiding{
-		visibility:visible;
-		opacity:0;
-		margin-top:-55px;
+		// display: none;
+		visibility:hidden;
+		// opacity:0;
+		animation: 2s fadeOut;
+		// height: 0px;
+		// margin-top: 0px;
+		// margin-top:-55px;
+
+		animation-fill-mode: forwards;
 	}
-	.growler--hidden{visibility:hidden;}
+
+	@keyframes fadeOut {
+	  0% {
+			visibility: visible;
+	    // opacity: 1;
+			// display: block;
+	  }
+
+	  50% {
+			visibility: hidden;
+			// display: none;
+	    opacity: 0;
+			// height: 0px;
+			// margin-top: 0px;
+	  }
+
+		100% {
+			// display: none;
+			height: 0px;
+			margin-top: 0px;
+		}
+	}
+
+	.growler--hidden{
+		display: none;
+		visibility:hidden;
+	}
 
 	#growler.error .icon{
 		margin-right:5px;

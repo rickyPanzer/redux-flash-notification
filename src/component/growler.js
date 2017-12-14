@@ -1,31 +1,24 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import Growler from './growler.jsx';
-import * as growlerActionCreators from '../actions/growler.action';
+import classNames from 'classnames/bind';
+import errors from 'classnames/bind';
+import './growler.scss';
 
-const mapStateToProps = state => ({
-  growler: state.growler,
-});
-const mapDispatchToProps = dispatch => bindActionCreators(growlerActionCreators, dispatch);
+const GrowlerComponent = ({growler, hideGrowler, message}) => {
 
-// @connect(mapStateToProps, mapDispatchToProps)
-class growlerContainer extends React.Component {
+  const growlerClass = classNames('growler', growler.type, {
+    'growler--hiding': growler.status === 'hide' ? true : false,
+    'growler--hidden': growler.status === 'hidden' ? true : false,
+  });
 
-  getMessage() {
-    const lang = this.props.currentLocale || "enUS";
-    let message = this.props.growler.text;
-    if(this.props.messages && this.props.messages[lang]){
-      return this.props.messages[lang][message] || message;
-    }
-    return message;
-  }
-
-  render() {
-    const message = this.getMessage();
-    this.props.hideTimeOutGrowler(this.props.growler, this.props.shownFor);
-    return <Growler {...this.props} message={message} />;
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(growlerContainer);
+  return (
+    <div className={growlerClass}
+      // onClick={ (evt) => { evt.preventDefault(); hideGrowler(growler);} }
+      >
+      <span className={`icon ${growler.icon}`}></span>
+      <p className="container">
+        { message }
+      </p>
+    </div>
+  );
+};
+export default GrowlerComponent;
