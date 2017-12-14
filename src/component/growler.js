@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => bindActionCreators(growlerActionCreators, dispatch);
 
-@connect(mapStateToProps, mapDispatchToProps)
+// @connect(mapStateToProps, mapDispatchToProps)
 class growlerContainer extends React.Component {
 
   getMessage() {
@@ -28,4 +28,4 @@ class growlerContainer extends React.Component {
   }
 }
 
-export default growlerContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(growlerContainer);

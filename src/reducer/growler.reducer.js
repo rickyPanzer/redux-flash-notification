@@ -7,7 +7,7 @@ const initialState = {
   status: 'hidden',
 };
 
-export default function growlerReducer(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
   case GROWLER__SHOW:
     return {
